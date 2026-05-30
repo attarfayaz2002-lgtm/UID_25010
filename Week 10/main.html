@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign of Product</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 300px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            background: #4facfe;
+            color: white;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #00c6ff;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Sign of Product</h2>
+
+    <input type="number" id="num1" placeholder="Enter first number"><br>
+    <input type="number" id="num2" placeholder="Enter second number"><br>
+    <input type="number" id="num3" placeholder="Enter third number"><br>
+
+    <button onclick="findSign()">Check Sign</button>
+</div>
+
+<script>
+function findSign() {
+
+    let a = document.getElementById("num1").value;
+    let b = document.getElementById("num2").value;
+    let c = document.getElementById("num3").value;
+
+    if (a === "" || b === "" || c === "") {
+        alert("Please enter all numbers");
+        return;
+    }
+
+    a = Number(a);
+    b = Number(b);
+    c = Number(c);
+
+    let product = a * b * c;
+
+    if (product > 0) {
+        alert("Result: Positive (+)");
+    } 
+    else if (product < 0) {
+        alert("Result: Negative (-)");
+    } 
+    else {
+        alert("Result: Zero (0)");
+    }
+}
+</script>
+
+</body>
+</html>

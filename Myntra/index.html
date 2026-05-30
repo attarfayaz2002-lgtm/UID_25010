@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myntra Style Clone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <a class="brand" href="#" onclick="filterProducts('all')" aria-label="Myntra style home">
+            <img src="Myntra.JPEG" alt="Myntra logo">
+        </a>
+
+        <nav class="nav-links">
+            <button onclick="filterProducts('men')">Men</button>
+            <button onclick="filterProducts('women')">Women</button>
+            <button onclick="filterProducts('kids')">Kids</button>
+            <button onclick="filterProducts('home')">Home</button>
+            <button onclick="filterProducts('beauty')">Beauty</button>
+            <button onclick="filterProducts('genz')">GenZ</button>
+            <button onclick="filterProducts('all')">Studio</button>
+        </nav>
+
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input id="searchInput" type="text" placeholder="Search products, brands, footer links and more" onkeyup="searchProducts()">
+        </div>
+
+        <div class="header-actions">
+            <button class="icon-action" onclick="openLoginModal()" aria-label="Profile">
+                <i class="fa-regular fa-user"></i>
+                <span>Profile</span>
+            </button>
+            <button class="icon-action" aria-label="Wishlist">
+                <i class="fa-regular fa-heart"></i>
+                <span>Wishlist</span>
+            </button>
+            <button class="icon-action" aria-label="Bag">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span>Bag <b id="cartCount">0</b></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="login-modal" id="loginModal">
+        <div class="login-box">
+            <button class="close-login" onclick="closeLoginModal()" aria-label="Close login">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2>Login to Myntra Clone</h2>
+            <p>Get access to your profile, wishlist, orders and personalized recommendations.</p>
+            <label for="loginEmail">Email or Mobile Number</label>
+            <input id="loginEmail" type="text" placeholder="Enter email or mobile number">
+            <label for="loginPassword">Password</label>
+            <input id="loginPassword" type="password" placeholder="Enter password">
+            <button class="login-submit" onclick="loginUser()">Login</button>
+            <p class="login-note" id="loginMessage">New user? Create an account after login setup.</p>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="sale-tag">Grand Fashion Festival</p>
+                <h1>Flat 50-80% off on trend-first fashion</h1>
+                <p>Fresh styles, beauty picks, home updates and everyday essentials inspired by a modern Myntra shopping page.</p>
+                <button onclick="scrollToProducts()">Shop deals</button>
+            </div>
+        </section>
+
+        <section class="coupon-strip">
+            <div><strong>Crazy Deals</strong><span>Extra 10% off on selected styles</span></div>
+            <div><strong>New User Offer</strong><span>Sign up and unlock welcome coupons</span></div>
+            <div><strong>Free Shipping</strong><span>On your first fashion order</span></div>
+        </section>
+
+        <section class="section-block">
+            <div class="section-heading">
+                <p>Explore top categories</p>
+                <h2>Shop by category</h2>
+            </div>
+
+            <div class="category-grid">
+                <button class="category-card" onclick="filterProducts('men')">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80" alt="Men fashion">
+                    <span>Men</span>
+                </button>
+                <button class="category-card" onclick="filterProducts('women')">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80" alt="Women fashion">
+                    <span>Women</span>
+                </button>
+                <button class="category-card" onclick="filterProducts('kids')">
+                    <img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=900&q=80" alt="Kids fashion">
+                    <span>Kids</span>
+                </button>
+                <button class="category-card" onclick="filterProducts('beauty')">
+                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=80" alt="Beauty products">
+                    <span>Beauty</span>
+                </button>
+                <button class="category-card" onclick="filterProducts('home')">
+                    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" alt="Home decor">
+                    <span>Home</span>
+                </button>
+                <button class="category-card" onclick="filterProducts('genz')">
+                    <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80" alt="GenZ fashion">
+                    <span>GenZ</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="deal-banner">
+            <div>
+                <p>Deal of the day</p>
+                <h2>Branded styles from Rs. 399</h2>
+            </div>
+            <button onclick="filterProducts('all')">View all</button>
+        </section>
+
+        <section class="section-block products-section" id="products">
+            <div class="section-heading">
+                <p id="activeFilter">All collections</p>
+                <h2>Trending now</h2>
+            </div>
+            <div class="product-grid" id="productContainer"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h3><button class="footer-heading-button" onclick="showFooterMessage('Online Shopping')">Online Shopping</button></h3>
+                <button onclick="filterProducts('men')">Men</button>
+                <button onclick="filterProducts('women')">Women</button>
+                <button onclick="filterProducts('kids')">Kids</button>
+                <button onclick="filterProducts('home')">Home</button>
+                <button onclick="filterProducts('beauty')">Beauty</button>
+                <button onclick="filterProducts('genz')">GenZ</button>
+            </div>
+            <div>
+                <h3><button class="footer-heading-button" onclick="showFooterMessage('Customer Policies')">Customer Policies</button></h3>
+                <button onclick="showFooterMessage('Contact Us')">Contact Us</button>
+                <button onclick="showFooterMessage('FAQ')">FAQ</button>
+                <button onclick="showFooterMessage('Shipping')">Shipping</button>
+                <button onclick="showFooterMessage('Returns')">Returns</button>
+                <button onclick="showFooterMessage('Terms of Use')">Terms of Use</button>
+            </div>
+            <div>
+                <h3><button class="footer-heading-button" onclick="showFooterMessage('Useful Links')">Useful Links</button></h3>
+                <button onclick="showFooterMessage('About Us')">About Us</button>
+                <button onclick="showFooterMessage('Gift Cards')">Gift Cards</button>
+                <button onclick="showFooterMessage('Myntra Insider')">Myntra Insider</button>
+                <button onclick="showFooterMessage('Blog')">Blog</button>
+                <button onclick="showFooterMessage('Careers')">Careers</button>
+            </div>
+            <div>
+                <h3><button class="footer-heading-button" onclick="showFooterMessage('Promise')">Promise</button></h3>
+                <button onclick="showFooterMessage('Original Products')">100% original products</button>
+                <button onclick="showFooterMessage('Easy Returns')">Easy returns within 14 days</button>
+                <button onclick="showFooterMessage('Secure Payments')">Secure payments</button>
+            </div>
+        </div>
+
+        <div class="footer-message" id="footerMessage">Click any footer link to see details here.</div>
+        <p class="copyright">Created for learning purposes - Myntra inspired clone, 2026.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

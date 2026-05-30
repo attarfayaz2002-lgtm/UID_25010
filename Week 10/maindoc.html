@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Student Grade Calculator</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #1d976c, #93f9b9);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+
+    .container {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        width: 320px;
+    }
+
+    input {
+        width: 80%;
+        padding: 10px;
+        margin: 6px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        border: none;
+        background: #4facfe;
+        color: white;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+
+    #output {
+        margin-top: 15px;
+        font-weight: bold;
+    }
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Student Grade</h2>
+
+<input type="number" id="m1" placeholder="Subject 1"><br>
+<input type="number" id="m2" placeholder="Subject 2"><br>
+<input type="number" id="m3" placeholder="Subject 3"><br>
+<input type="number" id="m4" placeholder="Subject 4"><br>
+<input type="number" id="m5" placeholder="Subject 5"><br>
+<input type="number" id="m6" placeholder="Subject 6"><br>
+
+<button onclick="calculateGrade()">Calculate Grade</button>
+
+<div id="output"></div>
+
+</div>
+
+<script>
+function calculateGrade() {
+
+    let a = document.getElementById("m1").value;
+    let b = document.getElementById("m2").value;
+    let c = document.getElementById("m3").value;
+    let d = document.getElementById("m4").value;
+    let e = document.getElementById("m5").value;
+    let f = document.getElementById("m6").value;
+
+    if (a==="" || b==="" || c==="" || d==="" || e==="" || f==="") {
+        alert("Enter all marks");
+        return;
+    }
+
+    a=Number(a); b=Number(b); c=Number(c);
+    d=Number(d); e=Number(e); f=Number(f);
+
+    let sum = a + b + c + d + e + f;
+    let avg = sum / 6;
+
+    let grade;
+
+    if (avg >= 90) grade = "A";
+    else if (avg >= 75) grade = "B";
+    else if (avg >= 60) grade = "C";
+    else grade = "D";
+
+    document.getElementById("output").textContent =
+        "Average: " + avg.toFixed(2) + " | Grade: " + grade;
+}
+</script>
+
+</body>
+</html>
